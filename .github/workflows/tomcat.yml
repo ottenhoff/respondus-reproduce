@@ -68,10 +68,10 @@ jobs:
 
       - name: Build Sakai 25.x and deploy to Tomcat
         working-directory: sakai
-        run: mvn --batch-mode -DskipTests -Denforcer.skip -Dmaven.source.skip install sakai:deploy-exploded -Dmaven.tomcat.home="${TOMCAT_DIR}"
+        run: mvn --batch-mode -DskipTests -Denforcer.skip -pl '!library,!webcomponents' -Dmaven.source.skip install sakai:deploy-exploded -Dmaven.tomcat.home="${TOMCAT_DIR}"
 
       - name: Build this tool and deploy to Tomcat
-        run: mvn install sakai:deploy-exploded -Dmaven.tomcat.home="${TOMCAT_DIR}"
+        run: mvn clean install 
 
       - name: Start Tomcat and verify startup
         run: |
